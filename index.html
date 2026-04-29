@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHI CHU FANG — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #4f378a;
+    --purple-light: #8c81f8;
+    --text-dark: #1f1f1f;
+    --text-mid: #4b5563;
+    --text-grey: #6b7280;
+    --border-grey: #c4c4c4;
+    --teal: #149b7f;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    background: #fff;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 160px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .nav-logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .nav-links a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 16px;
+    transition: background 0.2s;
+  }
+  .nav-links a:hover { background: #f5f5f5; }
+  .nav-right { display: flex; gap: 20px; align-items: center; }
+  .btn-outline {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-dark);
+    text-decoration: none;
+    border: 1px solid var(--border-grey);
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+  }
+  .btn-outline:hover { background: #f5f5f5; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: calc(100vh - 79px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 150px 255px;
+    background: #fff;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    letter-spacing: 1.44px;
+  }
+  .hero-name {
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text-dark);
+  }
+  .hero-name span { color: var(--purple); }
+  .hero-sub {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--text-dark);
+    max-width: 740px;
+  }
+  .hero-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+  }
+  .hero-arrow svg { color: var(--text-dark); opacity: 0.5; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 120px 255px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 50px;
+    width: 100%;
+  }
+  .section-header h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--text-mid);
+    white-space: nowrap;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-grey);
+  }
+
+  /* ── ABOUT ── */
+  #about { background: #fff; }
+  .about-content {
+    display: flex;
+    gap: 79px;
+    align-items: flex-start;
+  }
+  .about-text { flex: 1; max-width: 587px; }
+  .about-text .role {
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--purple);
+    margin-bottom: 8px;
+  }
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .about-text .highlight {
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+    font-weight: 600;
+    color: var(--purple);
+  }
+  .about-photo {
+    width: 237px;
+    height: 307px;
+    border-radius: 16px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: #fff; }
+  .exp-list { display: flex; flex-direction: column; gap: 50px; width: 100%; }
+  .exp-card {
+    display: grid;
+    grid-template-columns: 320px 1px 1fr;
+    gap: 0 32px;
+    align-items: center;
+    width: 100%;
+  }
+  .exp-summary { display: flex; flex-direction: column; justify-content: center; }
+  .exp-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .exp-company {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .exp-divider { height: 1px; background: #e5e5e5; margin-bottom: 8px; }
+  .exp-period { font-size: 14px; line-height: 1.7; color: var(--text-dark); }
+  .exp-sep {
+    width: 1px;
+    align-self: stretch;
+    background: #e5e5e5;
+  }
+  .exp-details { flex: 1; padding-right: 99px; }
+  .exp-details ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .exp-details li { font-size: 16px; line-height: 1.7; color: var(--text-dark); }
+  .exp-details .hl {
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+    font-weight: 600;
+    color: var(--purple);
+  }
+
+  /* ── PROJECT ── */
+  #project { background: #fff; overflow: hidden; }
+  .project-inner { display: flex; flex-direction: column; gap: 100px; }
+  .featured-project { display: flex; flex-direction: column; gap: 50px; }
+  .project-card { display: flex; flex-direction: column; gap: 16px; margin-bottom: 50px; }
+  .project-details { max-width: 935px; display: flex; flex-direction: column; gap: 12px; }
+  .project-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--purple);
+    line-height: 1.2;
+  }
+  .project-title.dark { color: var(--text-dark); }
+  .project-date { font-size: 14px; line-height: 1.7; color: var(--text-dark); }
+  .project-desc { font-size: 16px; line-height: 1.7; color: var(--text-dark); }
+  .project-desc .hl {
+    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+    font-weight: 600;
+    color: var(--purple);
+  }
+  .project-divider { height: 1px; background: #e5e5e5; }
+  .skills-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  .skill-tag {
+    border: 1px solid #000;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dark);
+  }
+  .scroll-hint { font-size: 12px; color: var(--text-grey); line-height: 1.7; margin-top: 8px; }
+
+  /* Image scroll */
+  .img-scroll-wrap {
+    width: calc(100% + 255px);
+    overflow-x: auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    margin-left: -20px;
+  }
+  .img-scroll-wrap::-webkit-scrollbar { height: 4px; }
+  .img-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
+  .img-scroll-wrap::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+  .project-img {
+    width: 700px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 0 5px 5px 0;
+    flex-shrink: 0;
+    box-shadow: 0 8px 30px rgba(149,157,165,0.2);
+  }
+  .project-img:first-child { box-shadow: 0 6px 24px rgba(0,0,0,0.05); }
+
+  /* Timeline cards */
+  .timeline-cards {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding: 16px 8px 20px;
+    margin: -16px -8px -20px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+  .timeline-cards::-webkit-scrollbar { height: 4px; }
+  .timeline-cards::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+  .timeline-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(100,100,111,0.2);
+    padding: 16px 10px;
+    width: 198px;
+    min-width: 198px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+  }
+  .timeline-card:last-child {
+    box-shadow: 0 4px 16px rgba(100,100,111,0.2), 0 1px 12px rgba(255,224,87,0.94);
+  }
+  .tl-date { font-weight: 600; font-size: 13px; text-align: center; width: 100%; }
+  .tl-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 113px;
+  }
+  .tl-icon { width: 56px; height: 56px; object-fit: contain; }
+  .tl-badge {
+    width: 100%;
+    padding: 7px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .tl-list {
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--text-dark);
+    padding-left: 16px;
+    width: 154px;
+    height: 101px;
+  }
+  .tl-list li { margin-bottom: 2px; }
+  .tl-arrow {
+    width: 24px;
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #bbb;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: #fff; display: flex; flex-direction: column; align-items: center; gap: 73px; }
+  .contact-text {
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
+    color: var(--text-dark);
+    max-width: 550px;
+  }
+  .contact-btns { display: flex; gap: 24px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+
+  /* ul in project */
+  .proj-ul { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+  .proj-ul li { font-size: 16px; line-height: 1.7; color: var(--text-dark); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="top">
+  <a href="#top" class="nav-logo">CHI CHU FANG</a>
+  <div style="display:flex; align-items:center; gap:235px;">
+    <div class="nav-links" style="gap:0;">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#project">project</a>
+      <a href="#contact">contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-outline" href="https://drive.google.com/file/d/1RrP0zTbGhI_xcJaTs1kP4lIXdidRRrG_/view?usp=sharing" target="_blank">Download Resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="padding:150px 255px;">
+  <div class="hero-content">
+    <p class="hero-name">Hi, I'm <span>ChiChu Fang</span></p>
+    <p class="hero-sub">Graphic/Games designer from Taiwan with experience in Japanese game localization.</p>
+  </div>
+  <a href="#about" class="hero-arrow" style="text-decoration:none;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:-10px"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header" style="max-width:930px; margin: 0 auto 50px;">
+    <div class="section-line"></div>
+    <h2>About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-content">
+    <div class="about-text">
+      <p class="role">ゲームデザイナー／プロジェクトマネジメントリーダー</p>
+      <p style="margin-bottom:8px;"></p>
+      <p>台湾のゲーム業界で、ローカライズデザイナーとしてキャリアをスタートしました。日本語版タイトルのUI設計や操作フローの最適化を通じて、「<span class="highlight">言語の壁を越えて、いかに心地よい体験を届けるか</span>」を常に追求してきました。</p>
+      <p style="margin-bottom:8px;"></p>
+      <p>その後は<span class="highlight">プロジェクトマネジメント</span>にも携わり、<span class="highlight">デザインチームのリーダー</span>として、日台全同期での高品質なリリースを支え続けること。それが、私がデザインとマネジメントの両面から追求しているミッションです。</p>
+    </div>
+    <img class="about-photo" src="https://www.figma.com/api/mcp/asset/b3d61979-1069-46d2-814d-062fd43f502e" alt="ChiChu Fang">
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <div class="section-line"></div>
+    <h2>Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
+    <!-- Card 1 -->
+    <div class="exp-card">
+      <div class="exp-summary">
+        <div class="exp-title">プロジェクトマネジメントリーダー</div>
+        <div class="exp-company">株式会社アカツキ<br>曉數碼股份有限公司（Akatsuki Taiwan Inc.）</div>
+        <div class="exp-divider"></div>
+        <div class="exp-period">2023/02 ~ 2025/06</div>
+      </div>
+      <div class="exp-sep"></div>
+      <div class="exp-details">
+        <ul>
+          <li><span class="hl">10名のデザイナーチームの</span><span class="hl" style="font-family:'Inter',sans-serif;">リーダー</span>を統括し、役割分担を明確化。</li>
+          <li><span class="hl">六言語バージョン</span>において、<span class="hl">デザイン品質と納期遵守の両立</span>を課題とする。</li>
+          <li><span class="hl">2023年日台全連動同時運営を完全に実現</span>、 日台間の円滑なコミュニケーションを支えるの役として、プロジェクトの意思疎通を最適化。</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="exp-card">
+      <div class="exp-summary">
+        <div class="exp-title">ゲームデザイナー</div>
+        <div class="exp-company">株式会社アカツキ<br>曉數碼股份有限公司（Akatsuki Taiwan Inc.）</div>
+        <div class="exp-divider"></div>
+        <div class="exp-period">2021/08 ~ 2023/02</div>
+      </div>
+      <div class="exp-sep"></div>
+      <div class="exp-details">
+        <ul>
+          <li><span class="hl">バナーローカライズ</span>：6言語に対応したバナー制作を実施、各市場の文化に最適化。</li>
+          <li>UIローカライズ：<span class="hl">6言語向けにUI要素を調整し、操作体験を改善</span>。</li>
+          <li><span class="hl">バージョン管理</span>： GitHubを用いて更新を管理し、設計ファイルとコードを正確に同期。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section id="project">
+  <div class="project-inner">
+
+    <!-- Featured Project -->
+    <div class="featured-project">
+      <div class="section-header" style="max-width:930px;">
+        <div class="section-line"></div>
+        <h2>Featured Project</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Project Overview -->
+      <div class="project-card">
+        <div class="project-details">
+          <p class="project-title">ドラゴンボールZ　ドッカンバトル</p>
+          <p class="project-date">2021~2025</p>
+          <div class="project-desc">
+            <p>世界中で愛されている「ドラゴンボール」を題材にした、大人気スマートフォンゲームです。世界170カ国以上で配信されており、6つの言語（日本語、英語、繁体字中国語、フランス語、韓国語、ドイツ語）に対応しています。</p>
+            <p>単なる翻訳にとどまらず、「<span class="hl">全世界同時運営</span>」に近いスピード感で、各国語のユーザーが同時にイベントを楽しめる体制を整えています。<span class="hl">多言語間でのデザイン調整や、文化に合わせた最適化（ローカライズ）の成功事例</span>として、世界中のプレイヤーから高く評価されています。</p>
+          </div>
+          <div class="project-divider"></div>
+        </div>
+      </div>
+
+      <!-- Banner Localize -->
+      <div class="project-card">
+        <div class="project-details">
+          <p class="project-title dark">Design | バナー ローカライズ</p>
+          <ul class="proj-ul">
+            <li>フォントデザインの共通化： 日本語フォントが持つ特徴をヒントに、<span class="hl" style="color:var(--text-dark)">他の言語でも特徴を損なわない共通の造形ルール</span>を作成しました。</li>
+            <li><span class="hl">言語ごとのバランス調整</span>： 言語によって異なる文字の長さや高さ（英語、ドイツ語、繁体字など）を考慮し、どの言語でも視覚的にバランス見えるよう配置を最適化。</li>
+          </ul>
+          <div class="skills-row">
+            <span class="skill-tag">Photoshop</span>
+            <span class="skill-tag">Illustrator</span>
+            <span class="skill-tag">Visual Design</span>
+          </div>
+        </div>
+        <div class="img-scroll-wrap">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/96f782ab-fffe-4670-9b0c-959ecddf2659" alt="Banner Localization 1">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/e1d9b94f-3781-40fa-b950-34feab1c554a" alt="Banner Localization 2">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/ef5002c3-0372-47e8-8c94-fcabbfd8c132" alt="Banner Localization 3">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/3cb59e9e-f1e4-48df-8944-ade0e35f3715" alt="Banner Localization 4">
+        </div>
+        <p class="scroll-hint">→ 右にスクロールして実績を見る</p>
+      </div>
+
+      <!-- UI Localize -->
+      <div class="project-card">
+        <div class="project-details">
+          <p class="project-title dark">Design | UI ローカライズ</p>
+          <ul class="proj-ul">
+            <li><span class="hl">UIレイアウトの最適化：</span> 例えば、ドイツ語やフランス語のように文字数が長くなる言語でも、デザインが崩れないよう柔軟なUI調整を実施。</li>
+            <li><span class="hl">可読性テスト（Readability Testing）</span>： 実際の端末で全てのUIを確認し、多言語環境下での読みやすさや操作性に問題がないか、徹底した検証を行っています。</li>
+            <li>一貫したユーザー体験： 世界中のユーザーが、言語の壁を感じることなくスムーズにプレイできる環境を整えました。</li>
+          </ul>
+          <div class="project-divider"></div>
+          <div class="skills-row">
+            <span class="skill-tag">Photoshop</span>
+            <span class="skill-tag">Github</span>
+            <span class="skill-tag">Sourcetree</span>
+            <span class="skill-tag">Usability Testing</span>
+          </div>
+        </div>
+        <div class="img-scroll-wrap">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/493e7566-86fa-46d3-9973-5683d5df3b10" alt="UI Localization 1">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/dcb91709-b6ac-41d9-ae43-bdc46562f5e0" alt="UI Localization 2">
+          <img class="project-img" style="object-fit:contain;" src="https://www.figma.com/api/mcp/asset/a69440a5-ba7d-4bc4-b2b2-3cf7171d66fb" alt="UI Localization 3">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/8979ff7d-3cba-4bf8-bc70-53961c260966" alt="UI Localization 4">
+        </div>
+        <p class="scroll-hint">→ 右にスクロールして実績を見る</p>
+      </div>
+
+      <!-- Management Leadership -->
+      <div class="project-card" style="gap:42px;">
+        <div class="project-details">
+          <p class="project-title dark">Management | 国際版全同期運営へのリーダーシップ</p>
+          <p class="project-date">2023/02 - 2024/7</p>
+          <ul class="proj-ul">
+            <li>リソースの最適化と策定： 過去のデータに基づき、国際版展開に必要なアートワークの負荷を正確に分析。<span class="hl">最適な人員配置とコスト管理を実現しました</span>。</li>
+            <li><span class="hl">ナレッジ継承とチーム育成</span>： 独自のデザインSOP（標準作業手順書）を策定。新旧メンバー間の円滑な引継ぎと教育体制を構築し、チーム全体の生産性を向上させました。</li>
+            <li><span class="hl">グローバル全同期リリースの実現</span>： 2024年夏、日台同時リリースを達成。多言語ローカライズの品質管理を徹底し、世界中のユーザーへ同時に高品質な体験を提供しました。</li>
+          </ul>
+          <div class="project-divider"></div>
+          <div class="skills-row">
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Team Leadership</span>
+            <span class="skill-tag">Localization</span>
+          </div>
+        </div>
+
+        <!-- Timeline Cards -->
+        <div class="timeline-cards">
+          <!-- Card 1 -->
+          <div class="timeline-card">
+            <div class="tl-date" style="color:#149b7f;">2023/02</div>
+            <div class="tl-label">制作コストの算出 必要人員の策定</div>
+            <img class="tl-icon" src="https://www.figma.com/api/mcp/asset/f7d06416-c44e-425a-adcd-d070da5b8c50" alt="">
+            <div class="tl-badge" style="background:#149b7f; color:#dff2ec;">プロジェクト始動</div>
+            <ul class="tl-list">
+              <li>国際版アートワーク負荷分析</li>
+              <li>バナー / UI 量産コスト見積</li>
+              <li><strong>アートワーク人員需要算出</strong> (日台リソース内訳)</li>
+            </ul>
+          </div>
+          <!-- Arrow -->
+          <div class="tl-arrow">
+            <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 2 10 10 2 18"/></svg>
+          </div>
+          <!-- Card 2 -->
+          <div class="timeline-card">
+            <div class="tl-date" style="color:#372e89;">2023/05</div>
+            <div class="tl-label">チーム構築と<br>ナレッジ継承</div>
+            <img class="tl-icon" src="https://www.figma.com/api/mcp/asset/aa6d3422-2fae-4b1a-940a-c479867ebd75" alt="">
+            <div class="tl-badge" style="background:#8c81f8; color:#372e89;">チーム構築期</div>
+            <ul class="tl-list">
+              <li>新旧メンバー引継ぎ・育成</li>
+              <li>育成メカニズムの構築</li>
+              <li>SOPと共通造形ルールの伝達</li>
+            </ul>
+          </div>
+          <!-- Arrow -->
+          <div class="tl-arrow">
+            <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 2 10 10 2 18"/></svg>
+          </div>
+          <!-- Card 3 -->
+          <div class="timeline-card">
+            <div class="tl-date" style="color:#0cceff;">2023/9</div>
+            <div class="tl-label">タスク割り当てと運営実行</div>
+            <img class="tl-icon" src="https://www.figma.com/api/mcp/asset/e3ffebda-683e-4159-9013-005fe2a2d5c2" alt="">
+            <div class="tl-badge" style="background:#062763; color:#a2ecff;">最適化と同期</div>
+            <ul class="tl-list">
+              <li>メンバータスク割り当て（バナー班 / UI班 専門分業）</li>
+              <li><strong>クロスファンクショナル</strong>な連携（エンジニア / 企画）</li>
+              <li>ローカライズ品質管理</li>
+            </ul>
+          </div>
+          <!-- Arrow -->
+          <div class="tl-arrow">
+            <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 2 10 10 2 18"/></svg>
+          </div>
+          <!-- Card 4 -->
+          <div class="timeline-card" style="box-shadow:0 4px 16px rgba(100,100,111,0.2), 0 1px 12px rgba(255,224,87,0.94);">
+            <div class="tl-date" style="color:#feb13a;">2024/7</div>
+            <div class="tl-label">2024 夏季<br>リリース</div>
+            <img class="tl-icon" src="https://www.figma.com/api/mcp/asset/e43818d7-c108-4d77-853d-3c4e618fbf64" alt="">
+            <div class="tl-badge" style="background:#884b04; color:#feb13a;">最適化と同期</div>
+            <ul class="tl-list">
+              <li>全同期運営の実現</li>
+              <li>多言語同時リリース</li>
+              <li><strong>高品質な日台同時納品を実現</strong> (グローバルローンチ成功)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Project -->
+    <div class="featured-project">
+      <div class="section-header" style="max-width:930px;">
+        <div class="section-line"></div>
+        <h2>Side Project</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="project-card">
+        <div class="project-details">
+          <p class="project-title dark">UI実戦キャンプ | マッチングアプリ『飯飯之交』</p>
+          <p class="project-date">2025/7-2025/8</p>
+          <ul class="proj-ul">
+            <li>コンセプト企画： 「食事は最も日常的で、個性が現れる習慣である」という洞察から、食文化を通じた情緒的な繋がりをデザインの核に据えました。</li>
+            <li><span class="hl">ワイヤーフレーム制作</span>： 前期コンセプトの立案から、ユーザー体験を形にするワイヤーフレームの執筆までを担当。</li>
+          </ul>
+          <div class="project-divider"></div>
+          <div class="skills-row">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">UI Design</span>
+            <span class="skill-tag">Prototyping</span>
+          </div>
+        </div>
+        <div class="img-scroll-wrap">
+          <img class="project-img" src="https://www.figma.com/api/mcp/asset/e96b885a-c7e0-4b00-bd1f-837f028f210d" alt="Side Project">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="display:flex; flex-direction:column; align-items:center; gap:73px; padding-top:120px; padding-bottom:80px;">
+  <div class="section-header" style="max-width:930px;">
+    <div class="section-line"></div>
+    <h2 style="color:var(--text-dark);">Contact</h2>
+    <div class="section-line"></div>
+  </div>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:50px;">
+    <div class="contact-text">
+      <p>現在、新しい挑戦の場を探しています。</p>
+      <p>お仕事のご相談や、ポートフォリオに関するご感想など、</p>
+      <p>お気軽にメッセージをいただけると嬉しいです！</p>
+    </div>
+    <div class="contact-btns">
+      <a class="btn-outline" href="https://www.linkedin.com/in/chi-chu-fang-b00732217" target="_blank">Linkedin</a>
+      <a class="btn-outline" href="mailto:chichufang@gmail.com" target="_blank">Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>FANG CHI CHU - 2026</footer>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
